@@ -23,7 +23,7 @@
 |
 */
 
-$config['base_url'] = 'http://localhost/ci_setup/';
+$config['base_url'] = 'http://localhost/task/';
 
 /*
 |--------------------------------------------------------------------------

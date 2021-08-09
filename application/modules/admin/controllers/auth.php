@@ -41,7 +41,7 @@ class Auth extends CI_Controller
                         );
                         // Add user data in session
                         $this->session->set_userdata($session_data);
-                        redirect('admin');
+                        redirect('admin/user/create');
                     } else {                        
                         $data = array(
                             'error_message' => 'Invalid Username or Password'

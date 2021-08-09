@@ -38,10 +38,7 @@
 |
 */
 
-$route['default_controller'] = "home";
-
-$route['api/(:any)'] = "api/$1";
-$route['api/(:any)/(:any)'] = "api/$1/$2";
+$route['default_controller'] = "admin";
 
 $route['admin'] = "admin";
 $route['admin/(:any)'] = "admin/$1";
@@ -50,8 +47,3 @@ $route['admin/(:any)/(:any)/(:any)'] = "admin/$1/$2/$3";
 
 $route['admin/login'] = "admin/auth/login";
 $route['admin/logout'] = "admin/auth/logout";
-
-$route['contact-us'] = "home/contact_us";
-
-$route['(:any)'] = "home/$1";
-$route['(:any)/(:any)'] = "home/$1/$2";

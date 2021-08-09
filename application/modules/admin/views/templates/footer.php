@@ -1,8 +1,3 @@
-			<footer class="footer">
-                <div class="container-fluid">
-                    <p class="copyright pull-right">COPYRIGHT ©2018. ALL RIGHTS RESERVED: GROOTIFY.</p>
-                </div>
-            </footer>        
        	</div>
 	</div>
 <script type="text/javascript">
@@ -18,12 +13,13 @@
 
 <!-- Forms Validations Plugin -->
 <script src="<?php echo base_url();?>assets/admin/vendors/jquery.validate.min.js"></script>
-
 <!--  DataTables.net Plugin    -->
-<script src="<?php echo base_url();?>assets/admin/vendors/jquery.datatables.min.js"></script>  
+<script src="<?php echo base_url();?>assets/admin/vendors/jquery.datatables.min.js"></script>
+<script src="<?php echo base_url();?>assets/admin/ckeditor/ckeditor.js"></script>    
 <script src="<?php echo base_url();?>assets/admin/vendors/dataTables.material.min.js"></script>  
-<script src="<?php echo base_url();?>assets/admin/js/tinymce/tinymce.min.js"></script>
-
+<script type="text/javascript">
+    CKEDITOR.replace('editor');
+</script>
 <script src="<?php echo base_url();?>assets/admin/js/admin.js"></script>
 </body>
 </html>

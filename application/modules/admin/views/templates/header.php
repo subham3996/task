@@ -40,7 +40,7 @@
     <div class="wrapper">
         <div class="sidebar">
             <div class="logo">
-                <a href="<?php echo base_url(); ?>" class="simple-text">                     
+                <a href="<?php echo base_url('admin'); ?>" class="simple-text">                     
                     <img src="<?php echo base_url()?>assets/admin/images/logo.png" style="height: 42px; margin: 5px;">
                 </a>
             </div>
@@ -58,36 +58,20 @@
                         </a>
                     </li>
                    
-                    <li <?php if($section == 'blog') { ?> class="active" <?php } ?>>
-                        <a data-toggle="collapse" id="toggle_blog" href="#sub_blog" class="collapsed" aria-expanded="false">
-                            <i class="material-icons">featured_play_list</i>
-                            <p>Blog <b class="caret"></b>
+                    <li <?php if($section == 'user') { ?> class="active" <?php } ?>>
+                        <a data-toggle="collapse" id="toggle_user" href="#sub_user" class="collapsed" aria-expanded="false">
+                            <i class="material-icons">group</i>
+                            <p>Users <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse" id="sub_blog" aria-expanded="false" style="height: 0px;">
+                        <div class="collapse" id="sub_user" aria-expanded="false" style="height: 0px;">
                             <ul class="nav">
                                 <li <?php if($type == 'list') { ?> class="active" <?php } ?>>
-                                    <a href="<?php echo base_url('admin/blog')?>"> All Articles</a>
+                                    <a href="<?php echo base_url('admin/user')?>"> All Users</a>
                                 </li>
                                 <li <?php if($type == 'create') { ?> class="active" <?php } ?>>
-                                    <a href="<?php echo base_url('admin/blog/create')?>">Add New</a>
+                                    <a href="<?php echo base_url('admin/user/create')?>">Add New</a>
                                 </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li <?php if($section == 'more') { ?> class="active" <?php } ?>>
-                        <a data-toggle="collapse" id="toggle_more" href="#sub_more" class="collapsed" aria-expanded="false">
-                            <i class="material-icons">more</i>
-                            <p> More <b class="caret"></b></p>
-                        </a>
-                        <div class="collapse" id="sub_more" aria-expanded="false" style="height: 0px;">
-                            <ul class="nav">
-                                <li <?php if($type == 'announcements') { ?> class="active" <?php } ?>>
-                                    <a href="<?php echo base_url('admin/announcements')?>">Announcements</a>
-                                </li>
-                                <li <?php if($type == 'gallery') { ?> class="active" <?php } ?>>
-                                    <a href="<?php echo base_url('admin/gallery')?>">Gallery</a>
-                                </li>                               
                             </ul>
                         </div>
                     </li>

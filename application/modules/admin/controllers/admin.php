@@ -4,57 +4,65 @@ class Admin extends Admin_Controller
 {
 	public function __construct(){        
         parent::__construct();
-        // $this->load->library('memcached_library');
         $this->load->model('standard_model');
     }
 
     public function index(){
-
         $data['main_content'] = "dashboard_view";
         $data['section'] = "dashboard";
         $data['type'] = '';
                 
         $this->load->view('master',$data);
     }
-
-    public function blog($type="list", $blog_id=0){
+    public function user($type="list", $user_id=0){
         
-        $data['section'] = "blog";
-        $data['toggle_element'] = "blog";
+        $data['section'] = "user";
+        $data['toggle_element'] = "user";
         $data['type'] = $type;
 
         if( $type=='list' ){
-            $data['articles'] = $this->get_blog_lists();
-            $data['main_content'] = "blog_list_view";            
+            $data['users'] = $this->get_user_lists();
+            $data['main_content'] = "user_list_view";            
         } else if( $type=='create' || $type == 'edit') {
-            if($blog_id!=0) {
-                $data['blog_id'] = $blog_id;                
+            if($user_id!=0) {
+                $data['user_id'] = $user_id;                
             }
-            $data['main_content'] = "blog_edit_view";            
+            $data['countries'] = $this->get_country();
+            $data['main_content'] = "user_edit_view";            
         } else {
             redirect(base_url('admin'));
         }
-        
         $this->load->view('master',$data);
     }
 
-    private function get_blog_lists() {
-        $data['table'] = 'articles';
-        $data['field'] = 'articles.id, articles.title, categories.name as cat_name, articles.cover_image, articles.slug, articles.status, articles.date_of_action';
+    private function get_country() {
+        $data['table'] = 'countries';
+        $data['field'] = 'id,name as country_name';
+        $this->standard_model->set_query_data($data);
+        $results = $this->standard_model->select();
+        if (is_object($results)) {
+            $results = array($results);
+        }
+        $append = '';
+        foreach ($results as $result) {
+            $append .= '<option value = "'.$result->id.'">'.$result->country_name.'</option>';
+        }
+        return $append;
+    }
+    private function get_user_lists() {
+        $data['table'] = 'users';
+        $data['field'] = 'users.id, users.name, users.email ,cities.name as city_name, states.name as state_name ,users.status, users.date_of_action';
 
         $data['join'] = array(
-            "categories" => 'categories.id = articles.cat_id',
+            "cities" => 'cities.id = users.city_id',
+            'states' => 'states.id = cities.state_id'
         );
-
         $data['condition'] = array(                 
-              "articles.status !=" => 'deleted'
+              "users.status !=" => 'deleted'
         );
-
         $data['order_by'] = array(
             'id' => 'desc'
         );
-
-        $data['limit'] = 50;
         $this->standard_model->set_query_data($data);
         $results = $this->standard_model->select();
 
@@ -66,28 +74,6 @@ class Admin extends Admin_Controller
         } else {
             return array();
         }
-    }   
-
-    public function announcements(){
-        
-        $data['section'] = "more";
-        $data['toggle_element'] = "more";
-        $data['type'] = 'announcements';
-
-        $data['main_content'] = "announcements_view";
-
-        $this->load->view('master',$data);
-    }
-
-    public function gallery(){
-        
-        $data['section'] = "more";
-        $data['toggle_element'] = "more";
-        $data['type'] = 'gallery';
-
-        $data['main_content'] = "gallery_view";
-
-        $this->load->view('master',$data);
     }
 	
 }
